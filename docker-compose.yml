@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  rtmp-server:
+    build:
+      context: .
+      args:
+        - NGINX_VERSION=1.25.2
+        - RTMP_VERSION=1.2.2
+        - USER_UID=1000
+        - USER_GID=1000
+    ports:
+      - "1935:1935"
+      - "8080:8080"
+    volumes:
+      - ./recordings:/var/rec
+    networks:
+      - iproxy
+    container_name: rtmp
+
+networks:
+  iproxy:
+    name: iproxy
+    external: true
