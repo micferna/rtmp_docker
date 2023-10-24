@@ -16,6 +16,7 @@ services:
     networks:
       - iproxy
     container_name: rtmp
+    restart: always 
 
 networks:
   iproxy:
